@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <audio id="music">
+            <source src="beep.mp3" type="audio/mpeg">
+            </audio>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+        <script src="main.js"></script>
+        <button id="theme" onclick="switchtheme()">switch </button>
+        <center>
+            <h1>Coukie cliker</h1>
+                <strong id="NbrCoukies" style="font-size: 100px;">Click to sync</strong><br>
+                <img src="coukie.png" class="animate__animated animate__pulse animate__faster" id="bigCoukie" style="height: 500px; width: 550px;" onclick="clickTheCOUKIE()">
+                <br><button onclick="Reset(chart, chart2, chart3)">Reset</button><br>
+                <table style="border-spacing: 20px;">
+                <tr>
+                    <td><button id="UPCLICK" onclick="upgradePower()">Upgrade Click Power price : 100</button>
+                        <tr>
+                            <td>
+                                <strong id="upD" style="font-size: 50px;">boost : 1X</strong><br>
+                                <strong id="GPS" style="font-size: 50px;">Gain auto : 0 coukies/s</strong><br>
+                                <strong id="CPS" style="font-size: 50px;">0  clicks/s</strong><br>
+                                <strong id="CoPS" style="font-size: 50px;">0 coukies/s</strong><br>
+                            </td>
+                            <td style="width: 50%;">
+                                <canvas id="myChart3"></canvas>
+                                <script>
+                                    let label3 = 0;
+                                
+                                    const ctx3 = document.getElementById('myChart3');
+                                    let chart3 = new Chart(ctx3, {
+                                        type: 'line',
+                                        data: {
+                                        labels: [],
+                                        datasets: [{
+                                            label: 'Coukies/s',
+                                            data: [],
+                                            borderWidth: 1
+                                        }]
+                                        },
+                                        options: {
+                                        scales: {
+                                            y: {
+                                            beginAtZero: true
+                                            }
+                                        }
+                                        }
+                                    });                        
+                                </script>
+                            </td>
+                        </tr>
+                    </td>
+                    <td><button onclick="CD(100, 5, 'CDC')">copper coukies chief <br> buy : <p class="CD" id="CDC">100</p> <br> produce 5 coukies/s</button>
+                        <button onclick="CD(10000, 500, 'CDS')">silver coukies chief <br> buy : <p class="CD" id="CDS">10000</p> <br> produce 500 coukies/s</button>
+                        <button onclick="CD(1000000, 50000, 'CDG')">gold coukies chief <br> buy : <p class="CD" id="CDG">1000000</p> <br> produce 50000 coukies/s</button>
+                        <button onclick="CD(1000000000, 50000000, 'CDG')">platinium coukies chief <br> buy : <p class="CD" id="CDP">1000000000</p> <br> produce 50000000 coukies/s</button>
+                        <button onclick="CD(1000000000000, 50000000000, 'CDCo')">COUKIES coukies chief <br> buy : <p class="CD" id="CDCo">1000000000000</p> <br> produce 50000000000 coukies/s</button><br>
+                    </td>
+                </tr>
+                <tr><td>
+                    <div>
+                        <tr>
+                            <td style="width: 50%;">
+                                <canvas id="myChart"></canvas>
+                                <script>
+                                    let label = 0;
+                                
+                                    const ctx = document.getElementById('myChart');
+                                    let chart = new Chart(ctx, {
+                                        type: 'line',
+                                        data: {
+                                        labels: [],
+                                        datasets: [{
+                                            label: 'Coukies Stock',
+                                            data: [],
+                                            borderWidth: 1
+                                        }]
+                                        },
+                                        options: {
+                                        scales: {
+                                            y: {
+                                            beginAtZero: true
+                                            }
+                                        }
+                                        }
+                                    });
+            
+            
+                                    
+                                </script>
+                            </td>
+                            <td style="width: 50%;">
+                                <canvas id="myChart2"></canvas>
+                                <script>
+                                    let label2 = 0;
+                                
+                                    const ctx2 = document.getElementById('myChart2');
+                                    let chart2 = new Chart(ctx2, {
+                                        type: 'line',
+                                        data: {
+                                        labels: [],
+                                        datasets: [{
+                                            label: 'Coukies/s',
+                                            data: [],
+                                            borderWidth: 1
+                                        }]
+                                        },
+                                        options: {
+                                        scales: {
+                                            y: {
+                                            beginAtZero: true
+                                            }
+                                        }
+                                        }
+                                    });                        
+                                </script>
+                            </td>
+                        </tr>
+                      </div>
+                </tr>
+            </table>            
+        </center>
+    </body>
+    <script>
+        document.body.style.background = localStorage.getItem("background");
+        setInterval(function() { 
+            label += 1;
+            chart.data.labels.push(label);
+            chart.data.datasets.forEach((dataset) => {
+                dataset.data.push(localStorage.getItem("NC"));
+            });
+            chart.update(); 
+        }, 1000);
+        setInterval(function() { 
+            label2 += 1;
+            chart2.data.labels.push(label2);
+            chart2.data.datasets.forEach((dataset) => {
+                dataset.data.push(localStorage.getItem("coukiesAtSec"));
+            });
+            chart2.update(); 
+        }, 1000);
+        setInterval(function() { 
+            label3 += 1;
+            chart3.data.labels.push(label3);
+            chart3.data.datasets.forEach((dataset) => {
+                dataset.data.push(clickAtSec);
+            });
+            chart3.update(); 
+        }, 1000);
+        setInterval(speed, 1000);
+        setInterval(COTI, 1000);
+    </script>
+</html>
