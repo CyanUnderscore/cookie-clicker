@@ -101,6 +101,7 @@
             chart2.data.datasets.forEach((dataset) => {
                 dataset.data.push(localStorage.getItem("clickAtSec2"));
             });
+            chart2.update();
         }, 1000);
 
         setInterval(function() { 
