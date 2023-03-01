@@ -4,6 +4,7 @@ let coukiesAtSec = 0;
 let bestCPS = 0;
 let bestCoPS = 0;
 
+// stokage sound effect
 const myMusic= document.getElementById("music");
 
 // necessair pur le reset (prix originaux des couhies chiefs)
@@ -18,7 +19,27 @@ localStorage.setItem("CDP", localStorage.getItem("CDP") || 1.0); //coef multipli
 localStorage.setItem("CDCo", localStorage.getItem("CDco") || 1.0); //coef multiplicateur du prix du COUKIES coukies chief
 localStorage.setItem("UpCost", localStorage.getItem("UpCost") || 100); // prix de l'amelioration multiplicatuer de click
 localStorage.setItem("Clicking Power", localStorage.getItem("Clicking Power") || 1); // force de l'amelioration multiplicatuer de click
-localStorage.setItem("backgound", localStorage.getItem("background") || "white");
+localStorage.setItem("backgound", localStorage.getItem("background") || "white"); // theme actuel
+
+// update le théme 
+background = localStorage.getItem("background");
+    if(background === "white"){
+        document.body.style.background = "black";
+        for(i=0;i<document.getElementsByTagName("strong").length; i++) {
+            document.getElementsByTagName("strong")[i].style.color = "white";
+        }
+        document.getElementsByTagName("h1")[0].style.color = "white";
+        localStorage.setItem("background", "black");
+    } else {
+        document.body.style.background = "white";
+        for(i=0;i<document.getElementsByTagName("strong").length; i++) {
+            document.getElementsByTagName("strong")[i].style.color = "black";
+        }
+        document.getElementsByTagName("h1")[0].style.color = "black";
+        localStorage.setItem("background", "white");
+    }
+
+
 
 // appeler quand on appuis sur le cookie (ou bouton si j'ai oublier / pas eu le temp de l'ajouter)
 function clickTheCOUKIE() {
@@ -27,6 +48,16 @@ function clickTheCOUKIE() {
     clickAtSec ++;
     coukiesAtSec += parseInt(localStorage.getItem("Clicking Power"));
     localStorage.setItem("coukiesAtSec", coukiesAtSec);
+
+    // animation
+    document.getElementById("bigCoukie").style.height = 400+"px";
+    document.getElementById("bigCoukie").style.width = 440+"px";
+    setTimeout(resizeCoukie, 100);
+}
+
+function resizeCoukie() {
+    document.getElementById("bigCoukie").style.height = 500+"px";
+    document.getElementById("bigCoukie").style.width = 550+"px";
 }
 
 /*
@@ -115,7 +146,7 @@ function upgradePower(){
 
 function COTI() {
     // ajoute x cookie au total par seconde (c'est les bots)
-    //localStorage.setItem("NC", parseInt(localStorage.getItem("NC")) + parseInt(localStorage.getItem("GPS")));
+    localStorage.setItem("NC", parseInt(localStorage.getItem("NC")) + parseInt(localStorage.getItem("GPS")));
     document.getElementById("NbrCoukies").textContent = localStorage.getItem("NC");
     document.getElementById("GPS").textContent = "Gain auto : " + parseInt(localStorage.getItem("GPS")) + " coukies/s";
     coukiesAtSec += parseInt(localStorage.getItem("GPS"));
@@ -160,3 +191,8 @@ function switchtheme() {
         localStorage.setItem("background", "white");
     }
 }
+
+function GoTo1v1(){
+    window.location.href='1v1.html';
+}
+

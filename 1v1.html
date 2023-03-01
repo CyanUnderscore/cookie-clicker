@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <button id="theme" onclick="switchtheme()">switch </button><br>
+        <button id="GoTo1v1" style="font-size: 15px; height: 70px; width: 50px;" onclick="GoTo1v1()">go to the coukie clicker</button>
+    </head>
+    <body>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="1v1.js"></script>
+        <center>
+            <h1>1v1 coukie fight</h1>
+            <table style="border-spacing: 20px;">
+                <tr>
+                    <td><strong>Player 1</strong></td>
+                    <td><strong>Player 1</strong></td>
+                </tr>
+                <tr>
+                    <td><div style="height: 600px;"><img src="coukie.png" class="animate__animated animate__pulse animate__faster" id="bigCoukie1" style="height: 500px; width: 550px;"></td></div>
+                    <td><div style="height: 600px;"><img src="coukie.png" class="animate__animated animate__pulse animate__faster" id="bigCoukie2" style="height: 500px; width: 550px;"></td></div>
+                </tr>
+                <tr>
+                    <td>
+                        <strong id="NbrCoukies1">0</strong><br>
+                        <strong id="CPS1">0</strong><br>
+                        <strong id="BestCPS1">0</strong>
+                    </td>
+                    <td>
+                        <strong id="NbrCoukies2">0</strong><br>
+                        <strong id="CPS2">0</strong><br>
+                        <strong id="BestCPS2">0</strong>
+                    </td>
+                </tr>
+                <tr>
+                        <td style="width: 50%;">
+                            <canvas id="myChart"></canvas>
+                            <script>
+                                let label = 0;
+                            
+                                const ctx = document.getElementById('myChart');
+                                let chart = new Chart(ctx, {
+                                    type: 'line',
+                                    data: {
+                                    labels: [],
+                                    datasets: [{
+                                        label: 'CPS1',
+                                        data: [],
+                                        borderWidth: 1
+                                    }]
+                                    },
+                                    options: {
+                                    scales: {
+                                        y: {
+                                        beginAtZero: true
+                                        }
+                                    }
+                                    }
+                                });
+                            </script>
+                        </td>
+                        <td style="width: 50%;">
+                            <canvas id="myChart2"></canvas>
+                            <script>
+                                let label2 = 0;
+                            
+                                const ctx2 = document.getElementById('myChart2');
+                                let chart2 = new Chart(ctx2, {
+                                    type: 'line',
+                                    data: {
+                                    labels: [],
+                                    datasets: [{
+                                        label: 'CPS2',
+                                        data: [],
+                                        borderWidth: 1
+                                    }]
+                                    },
+                                    options: {
+                                    scales: {
+                                        y: {
+                                        beginAtZero: true
+                                        }
+                                    }
+                                    }
+                                });                        
+                            </script>
+                        </td>
+                    </tr>
+            </table>
+        </center>
+        
+    </body>
+    <script>
+        setInterval(speed, 1000);
+        
+        setInterval(function() { 
+            label2 += 1;
+            chart2.data.labels.push(label2);
+            chart2.data.datasets.forEach((dataset) => {
+                dataset.data.push(localStorage.getItem("clickAtSec2"));
+            });
+        }, 1000);
+
+        setInterval(function() { 
+            label += 1;
+            chart.data.labels.push(label);
+            chart.data.datasets.forEach((dataset) => {
+                dataset.data.push(localStorage.getItem("clickAtSec1"));
+            });
+            chart.update(); 
+        }, 1000);
+        
+    </script>
+</html>
