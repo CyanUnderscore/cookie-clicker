@@ -81,29 +81,24 @@ function clickTheCOUKIE(a) {
     if(a === 1){
         localStorage.setItem("NC1", parseInt(localStorage.getItem("NC1"))+1);
         document.getElementById("NbrCoukies1").textContent = localStorage.getItem("NC1") + "coukies";
-        document.getElementById("bigCoukie1").style.height = 400+"px";
-        document.getElementById("bigCoukie1").style.width = 440+"px";
+        document.getElementById("bigCoukie1").style.height = "400px";
+        document.getElementById("bigCoukie1").style.width = "440px";
         clickAtSec1 ++;
-        setTimeout(resizeCoukie(1), 100);
+        setTimeout(function() {
+            document.getElementById("bigCoukie1").style.height = "500px";
+            document.getElementById("bigCoukie1").style.width = "550px";}, 100);
     } else {
         localStorage.setItem("NC2", parseInt(localStorage.getItem("NC2"))+1);
         document.getElementById("NbrCoukies2").textContent = localStorage.getItem("NC2") + "coukies";
-        document.getElementById("bigCoukie2").style.height = 400+"px";
-        document.getElementById("bigCoukie2").style.width = 440+"px";
+        document.getElementById("bigCoukie2").style.height = "400px";
+        document.getElementById("bigCoukie2").style.width = "440px";
         clickAtSec2 ++;
-        setTimeout(resizeCoukie(2), 100);
+        setTimeout(function() {
+            document.getElementById("bigCoukie2").style.height = "500px";
+            document.getElementById("bigCoukie2").style.width = "550px";}, 100);
     }
 }
 
-function resizeCoukie(i) {
-    if(i === 1) {
-        document.getElementById("bigCoukie1").style.height = 500+"px";
-    document.getElementById("bigCoukie1").style.width = 550+"px";
-    } else {
-        document.getElementById("bigCoukie2").style.height = 500+"px";
-    document.getElementById("bigCoukie2").style.width = 550+"px";
-    }
-}
 
 function speed() {
     document.getElementById("CPS1").textContent = clickAtSec1 + "  click/s";
