@@ -62,6 +62,21 @@ function switchtheme() {
     }
 }
 
+function Reset() {
+    localStorage.setItem("NC1", 0);
+    document.getElementById("NbrCoukies2").textContent = "0 coukies";
+    localStorage.setItem("NC2", 0);
+    document.getElementById("NbrCoukies1").textContent = "0 coukies";
+    localStorage.setItem("CPS1", 0);
+    document.getElementById("CPS1").textContent = localStorage.getItem("CPS1") + "  click/s";
+    localStorage.setItem("CPS2", 0);
+    document.getElementById("CPS2").textContent = localStorage.getItem("CPS2") + "  click/s";
+    bestCPS1 = 0;
+    document.getElementById("BestCPS1").textContent = bestCPS1 + "  click/s";
+    bestCPS2 = 0;
+    document.getElementById("BestCPS2").textContent = bestCPS2 + "  click/s";
+}
+
 function clickTheCOUKIE(a) {
     if(a === 1){
         localStorage.setItem("NC1", parseInt(localStorage.getItem("NC1"))+1);
